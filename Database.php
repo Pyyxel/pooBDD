@@ -22,5 +22,7 @@ class Database {
           // Faire un return de la BDD ou non en fonction de ou on utilise la connexion
           return $bdd;
       }
+
+      
   }
 ?>

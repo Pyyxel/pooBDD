@@ -1,6 +1,6 @@
 <?php session_start();
 
-if (isset($_SESSION['email']) AND isset($_SESSION['pass']))
+if (isset($_SESSION['email']) AND isset($_SESSION['pass']) AND (isset($_SESSION['valid'])))
 {
 
 ?>
