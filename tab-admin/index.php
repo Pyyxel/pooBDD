@@ -1,4 +1,7 @@
-<?php session_start();
+<?php 
+require_once("../Database.php");
+require_once("../User.php");
+session_start();
 
 if (isset($_SESSION['email']) AND isset($_SESSION['pass']) AND (isset($_SESSION['valid'])))
 {
@@ -38,28 +41,27 @@ if (isset($_SESSION['email']) AND isset($_SESSION['pass']) AND (isset($_SESSION[
 					<table>
 						<thead>
 							<tr class="table100-head">
-								<th class="column1">id</th>
 								<th class="column2">mail</th>
 								<th class="column3">mdp</th>
 								<th class="column4">Modifier</th>
 								<th class="column5">Supprimer</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody>	
+							<?php
+								$conect=new Database("localhost","userBDD","root","");
+								$bdd=$conect->PDOConnexion();
+								$req=$bdd->prepare("SELECT * FROM User");
+								$req->execute();
+								while($donne=$req->fetch()){
+							?>
 								<tr>
-									<td class="column1">1</td>
-									<td class="column2">test@test.fr</td>
-									<td class="column3">password</td>
-									<td class="column4"><a href="#">Modifier</a></td>
+									<td class="column1"><?php echo $donne['email']?></td>
+									<td class="column2"><?php echo $donne['mdp']?></td>
+									<td class="column4"><a href="../changemdp.php">Modifier mot de passe</a></td>
 									<td class="column5"><a href="#">Supprimer</a></td>
 								</tr>
-								<tr>
-									<td class="column1">2</td>
-									<td class="column2">test1@test.fr</td>
-									<td class="column3">password1</td>
-									<td class="column4"><a href="#">Modifier</a></td>
-									<td class="column5"><a href="#">Supprimer</a></td>
-								</tr>
+								<?php } ?>
 						</tbody>
 					</table>
 					<br><br><br><br><br>

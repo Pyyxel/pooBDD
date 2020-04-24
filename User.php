@@ -32,7 +32,7 @@
             $donnee=$req->fetch();
             
             $count = $req->rowCount();
-            var_dump($this->verifToken($bdd));
+           
             if($count > 0){
                 if($this->verifToken($bdd)){
                     session_start();
@@ -72,6 +72,9 @@
                 echo "erreur";
             }
         }
+
+        
+        
         
        
     }
